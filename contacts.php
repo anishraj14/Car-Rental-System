@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Contact Us - Pro Car Rental</title>
+  <title>Contact Me</title>
   <style>
     /* (Your existing styles remain unchanged) */
     body {
@@ -150,8 +150,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
   <header>
-    <h1>Contact Car Rental System</h1>
-    <p>We're here to help you 24/7</p>
+    <h1>Contact ME</h1>
+    <p>Get In Touch</p>
   </header>
 
   <nav>
