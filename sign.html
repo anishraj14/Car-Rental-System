@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up | Pro Car Rental</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-image: url('car4.jpg'); /* Replace with your image */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .signup-container {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      padding: 2rem 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      max-width: 400px;
+      width: 100%;
+    }
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 1.5rem;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    input:focus {
+      border-color: #3498db;
+      outline: none;
+    }
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 52px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: #3498db;
+    }
+    .strength {
+      font-size: 0.9rem;
+      margin-top: 0.3rem;
+      font-weight: bold;
+    }
+    .weak {
+      color: #e74c3c;
+    }
+    .medium {
+      color: #f39c12;
+    }
+    .strong {
+      color: #2ecc71;
+    }
+    .btn {
+      width: 100%;
+      padding: 0.75rem;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 1rem;
+    }
+    .btn:hover {
+      background: #2980b9;
+    }
+    .message {
+      margin-top: 1rem;
+      text-align: center;
+      font-weight: bold;
+      display: none;
+    }
+    .message.error {
+      color: #e74c3c;
+    }
+    .message.success {
+      color: #2ecc71;
+    }
+    .login-link {
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .login-link a {
+      color: #2ecc71;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="signup-container">
+    <h2>Create Account</h2>
+    <form id="signupForm" action="sign.php" method="POST" onsubmit="return validateForm()">
+
+      <div class="form-group">
+        <label for="username">Username</label>
+        <!-- Added name="username" -->
+        <input type="text" id="username" name="username" required />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number (10 digits)</label>
+        <!-- Added name="phone" -->
+        <input type="tel" id="phone" name="phone" pattern="\d{10}" required />
+      </div>
+      <div class="form-group">
+        <label for="password">Password (min 6 characters)</label>
+        <!-- Added name="password" -->
+        <input type="password" id="password" name="password" minlength="6" required oninput="checkPasswordStrength()" />
+        <span class="toggle-password" onclick="togglePassword()">Show</span>
+        <div id="strengthMessage" class="strength"></div>
+      </div>
+      <button type="submit" class="btn">Sign Up</button>
+      <div class="message" id="messageBox"></div>
+      <div class="login-link">
+        Already have an account? <a href="login.html">Login</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function togglePassword() {
+      const password = document.getElementById("password");
+      const toggle = document.querySelector(".toggle-password");
+      if (password.type === "password") {
+        password.type = "text";
+        toggle.textContent = "Hide";
+      } else {
+        password.type = "password";
+        toggle.textContent = "Show";
+      }
+    }
+
+    function checkPasswordStrength() {
+      const password = document.getElementById("password").value;
+      const strengthMsg = document.getElementById("strengthMessage");
+
+      let strength = 0;
+      if (password.length >= 6) strength++;
+      if (/[A-Z]/.test(password)) strength++;
+      if (/[0-9]/.test(password)) strength++;
+      if (/[\W_]/.test(password)) strength++;
+
+      if (password.length === 0) {
+        strengthMsg.textContent = '';
+        strengthMsg.className = 'strength';
+      } else if (strength <= 1) {
+        strengthMsg.textContent = 'Weak';
+        strengthMsg.className = 'strength weak';
+      } else if (strength === 2 || strength === 3) {
+        strengthMsg.textContent = 'Medium';
+        strengthMsg.className = 'strength medium';
+      } else {
+        strengthMsg.textContent = 'Strong';
+        strengthMsg.className = 'strength strong';
+      }
+    }
+
+    function validateForm() {
+      const username = document.getElementById("username").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const password = document.getElementById("password").value;
+      const messageBox = document.getElementById("messageBox");
+
+      messageBox.classList.remove("error", "success");
+      messageBox.style.display = "block";
+
+      if (!username || !phone || !password) {
+        messageBox.textContent = "All fields are required.";
+        messageBox.classList.add("error");
+        return false;
+      }
+
+      if (!/^\d{10}$/.test(phone)) {
+        messageBox.textContent = "Phone number must be 10 digits.";
+        messageBox.classList.add("error");
+        return false;
+      }
+
+      if (password.length < 6) {
+        messageBox.textContent = "Password must be at least 6 characters.";
+        messageBox.classList.add("error");
+        return false;
+      }
+
+      // Validation passed, allow form to submit
+      return true;
+    }
+  </script>
+</body>
+</html>

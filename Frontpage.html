@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Car Rental Front Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body, html {
+      height: 100%;
+    }
+
+    .hero {
+      background: url('car2.jpg') no-repeat center center/cover;
+      height: 100vh;
+      position: relative;
+      color: white;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.5);
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    nav {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      z-index: 2;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #1abc9c;
+    }
+
+    .menu {
+      display: flex;
+      gap: 2rem;
+      font-weight: 600;
+    }
+
+    .menu a {
+      color: white;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .menu a:hover,
+    .menu a.active {
+      color: #1abc9c;
+    }
+
+    .social {
+      position: absolute;
+      top: 1.5rem;
+      left: 1.5rem;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social i {
+      font-size: 1.2rem;
+      color: white;
+      transition: color 0.3s;
+    }
+
+    .social i:hover {
+      color: #1abc9c;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+
+    .hero-content h2 {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #ecf0f1;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="overlay"></div>
+
+    <div class="social">
+      <i class="fab fa-facebook-f"></i>
+      <i class="fab fa-x-twitter"></i>
+      <i class="fab fa-instagram"></i>
+    </div>
+
+    <nav>
+      <div class="logo">Car <span>Rental</span></div>
+      <div class="menu">
+        <a href="#" class="active">Home</a>
+        <a href="contact.html">About Us</a>
+        <a href="contacts.php">Contact</a>
+        <a href="login.html">Login</a>
+      </div>
+    </nav>
+
+    <div class="hero-content">
+      <h1>Welcome To Car Rentals: Best Car Rental In Dehradun!</h1>
+      <h2>Looking for reliable car rental options in Dehradun? Book now with simple pricing and easy steps.</h2>
+    </div>
+
+  </section>
+</body>
+</html>
